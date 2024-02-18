@@ -32,9 +32,9 @@ fun TareaApi3Theme() {
             LoginInicio(onLoginClicked = { username, password ->
                 // Aquí iría la lógica de autenticación
                 // Por ahora, simplemente simularemos la autenticación con un valor fijo
-                if (username == "user" && password == "password") {
+               // if (username == "user" && password == "password") {
                     loggedIn = true
-                }
+                //}
             })
         }
     }

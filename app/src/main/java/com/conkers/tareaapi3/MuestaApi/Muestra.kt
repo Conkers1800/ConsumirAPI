@@ -31,13 +31,6 @@ fun MuestaPantalla() {
                 modifier = Modifier.fillMaxWidth()
             )
             Spacer(modifier = Modifier.height(30.dp))
-            Button(
-                onClick = { /* Handle data submission */ },
-                modifier = Modifier.fillMaxWidth(),
-            ) {
-                Text("Submit")
-            }
-            Spacer(modifier = Modifier.height(30.dp))
             Text(text = "Entered data: $data")
         }
     }
