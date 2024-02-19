@@ -1,5 +1,6 @@
 package com.conkers.tareaapi3.Login
 
+import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
@@ -12,14 +13,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import com.conkers.tareaapi3.R
 
 @Composable
-fun LoginInicio(onLoginClicked: (String, String) -> Unit) {
-    var username by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
-
+fun Login(
+    context: Context,
+    username: TextFieldValue,
+    password: TextFieldValue,
+    onUsernameChange: (TextFieldValue) -> Unit,
+    onPasswordChange: (TextFieldValue) -> Unit,
+    onLoginClicked: () -> Unit
+) {
     Surface(color = MaterialTheme.colorScheme.background) {
         Column(
             modifier = Modifier
@@ -28,40 +34,34 @@ fun LoginInicio(onLoginClicked: (String, String) -> Unit) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Box(
+            Image(
+                painter = painterResource(id = R.drawable.descarga),
+                contentDescription = "Logo",
                 modifier = Modifier
                     .size(200.dp)
-                    .padding(16.dp),
-                contentAlignment = Alignment.Center
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.descarga),
-                    contentDescription = null,
-                    modifier = Modifier.size(200.dp)
-                )
-            }
+                    .padding(bottom = 16.dp)
+            )
             OutlinedTextField(
                 value = username,
-                onValueChange = { username = it },
+                onValueChange = onUsernameChange,
                 label = { Text("Username") },
                 modifier = Modifier.fillMaxWidth()
             )
             Spacer(modifier = Modifier.height(16.dp))
             OutlinedTextField(
                 value = password,
-                onValueChange = { password = it },
+                onValueChange = onPasswordChange,
                 label = { Text("Password") },
                 modifier = Modifier.fillMaxWidth(),
                 visualTransformation = PasswordVisualTransformation()
             )
             Spacer(modifier = Modifier.height(16.dp))
             Button(
-                onClick = { onLoginClicked(username, password) },
+                onClick = onLoginClicked,
                 modifier = Modifier.fillMaxWidth(),
             ) {
-                Text("Entrar")
+                Text("Login")
             }
         }
     }
 }
-
